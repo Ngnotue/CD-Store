@@ -71,6 +71,55 @@ public class Model {
 		}
 	}
 	
+	public boolean registrazione(String user_id, String pwd, String cod_fiscale, String nome, String cognome, String citta_residenza, String telefono, String cellulare) throws ClassNotFoundException,SQLException,ParseException {
+		// Caricamento driver
+		Class.forName("org.postgresql.Driver");
+		
+		// Creazione connessione
+		try (Connection con=DriverManager.getConnection(getConnectionServer(),getConnectionUser(),getConnectionPwd())) {
+			
+			// Interrogazione e stampa
+			try(Statement st=con.createStatement()) {
+				PreparedStatement pst = con.prepareStatement("SELECT COUNT(*) AS rowcount "
+														   + "FROM cliente "
+														   + "WHERE user_id=?");
+				pst.setString(1, user_id);
+				ResultSet rs = pst.executeQuery();
+				rs.next();
+				int size = rs.getInt("rowcount");
+				
+				if (size==0){
+					// Inserimento dati
+					try (PreparedStatement pst1=con.prepareStatement("INSERT INTO cliente(user_id,pwd,cod_fiscale,nome,cognome,citta_residenza,telefono,cellulare) VALUES (?,?,?,?,?,?,?,?)")) {
+						pst1.clearParameters();
+						pst1.setString(1, user_id);
+						pst1.setString(2, pwd);
+						pst1.setString(3, cod_fiscale);
+						pst1.setString(4, nome);
+						pst1.setString(5, cognome);
+						pst1.setString(6, citta_residenza);
+						pst1.setString(7, telefono);
+						pst1.setString(8, cellulare);
+						pst1.executeUpdate();
+						return true;
+					}catch(SQLException e) {
+						System.out.println("Errore durante inserimento dati: " + e.getMessage());
+						return false;
+					}
+				}
+				else{
+					return false;
+				}
+			}catch(SQLException e) {
+				System.out.println("Errore durante estrazione dati: " + e.getMessage());
+				return false;
+			}
+		}catch(SQLException e) {
+			System.out.println("Problema durante la connessione iniziale alla base di dati: " + e.getMessage());
+			return false;
+		}
+	}
+	
 	public String getUsername(int user_id) throws ClassNotFoundException,SQLException,ParseException {
 		// Caricamento driver
 		Class.forName("org.postgresql.Driver");

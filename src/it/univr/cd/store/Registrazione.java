@@ -8,6 +8,7 @@ import java.text.ParseException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -133,7 +134,40 @@ public class Registrazione extends JFrame {
 		buttonRegistrati.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				String error = "";
+				boolean exception = false;
+				String pwd = "";
+				for(int i=0; i<textPassword.getPassword().length; i++)
+					pwd += textPassword.getPassword()[i];
+						
+				if(textNome.getText().equals("") || textCognom.getText().equals("") || textUserID.getText().equals("") 
+						|| pwd.equals("") || textCitta.getText().equals("") 
+						|| textTelefono.getText().equals("") || textCellulare.getText().equals("")){
+					error += "Uno o piu' campi sono vuoti\n";
+					exception = true;
+				}
 				
+				if (textCodiceFiscale.getText().length() != 16){
+					error += "I caratteri del codice fiscale devono essere 16\n";
+					exception = true;
+				}
+				
+				if (exception == false){
+					// INSERT
+					try {
+						if(model.registrazione(textUserID.getText(), pwd, textCodiceFiscale.getText(), textNome.getText(), textCognom.getText(), textCitta.getText(), textTelefono.getText(), textCellulare.getText())){
+							JOptionPane.showMessageDialog(null, "Registrazione avvenuta!","Report",1);
+							setVisible(false);
+						}
+						else{
+							JOptionPane.showMessageDialog(null, "Impossibile inserire i valori, UserId già esistente. Riprovare|","Errore",1);
+						}
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+				}else{
+					JOptionPane.showMessageDialog(null, error + "Impossibile inserire i valori. Riprovare!","Errore",1);
+				}
 			}
 		});
 	}
