@@ -116,8 +116,13 @@ public class Login extends JFrame {
 			buttonRegistrazione.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					Registrazione viewRegistrazione = new Registrazione();
-					viewRegistrazione.setVisible(true);
+					Registrazione viewRegistrazione;
+					try {
+						viewRegistrazione = new Registrazione();
+						viewRegistrazione.setVisible(true);
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
 				}
 			});
 		}
