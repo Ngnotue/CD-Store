@@ -48,7 +48,14 @@ public class Carrello extends JFrame {
 		setContentPane(panel);
 		panel.setLayout(null);
 		
+		JLabel labelTesto;		
 		if(Control.getLogged()){
+			labelTesto = new JLabel("User: " + model.getUsername(Control.getUserId()));
+			labelTesto.setBounds(5, 5, 100, 30);
+			labelTesto.setBackground(Color.WHITE);
+			labelTesto.setForeground(Color.BLACK);
+			panel.add(labelTesto);
+			
 			JButton buttonCarrello = new JButton("Il mio Carrello");
 			buttonCarrello.setBounds(5, 46, 189, 23);
 			panel.add(buttonCarrello);
@@ -81,7 +88,7 @@ public class Carrello extends JFrame {
 				}
 			});
 			
-			JLabel labelTesto = new JLabel("Carrello");
+			labelTesto = new JLabel("Carrello");
 			labelTesto.setBounds(5, 150, 429, 30);
 			labelTesto.setBackground(Color.WHITE);
 			labelTesto.setForeground(Color.BLACK);
@@ -89,7 +96,7 @@ public class Carrello extends JFrame {
 			panel.add(labelTesto);
 			
 			// VIEW CARRELLO
-			String[] columnNames = {"id","titolo","prezzo","data_sito"};
+			String[] columnNames = {"#","Titolo","Prezzo","Data inserimento"};
 			Object[][] data = model.getCarrello();
 			
 			TableModel modelTable = new DefaultTableModel(data, columnNames){
@@ -139,13 +146,13 @@ public class Carrello extends JFrame {
 			panel.add(labelTextField);
 			
 			if(model.rowCarrello() != 0){
-				JLabel labelTextTotale = new JLabel(model.getTotaleCarrello() + " euro");
+				JLabel labelTextTotale = new JLabel(model.getTotaleCarrello() + " €");
 				labelTextTotale.setHorizontalAlignment(SwingConstants.LEFT);
 				labelTextTotale.setBounds(55, 395, 97, 20);
 				panel.add(labelTextTotale);
 			}
 			else{
-				JLabel labelTextTotale = new JLabel("0,00 euro");
+				JLabel labelTextTotale = new JLabel("0,00 €");
 				labelTextTotale.setHorizontalAlignment(SwingConstants.LEFT);
 				labelTextTotale.setBounds(55, 395, 97, 20);
 				panel.add(labelTextTotale);

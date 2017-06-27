@@ -48,7 +48,14 @@ public class Ordini extends JFrame {
 		setContentPane(panel);
 		panel.setLayout(null);
 		
+		JLabel labelTesto;
 		if(Control.getLogged()){
+			labelTesto = new JLabel("User: " + model.getUsername(Control.getUserId()));
+			labelTesto.setBounds(5, 5, 100, 30);
+			labelTesto.setBackground(Color.WHITE);
+			labelTesto.setForeground(Color.BLACK);
+			panel.add(labelTesto);
+			
 			JButton buttonCarrello = new JButton("Il mio Carrello");
 			buttonCarrello.setBounds(5, 46, 189, 23);
 			panel.add(buttonCarrello);
@@ -81,7 +88,7 @@ public class Ordini extends JFrame {
 				}
 			});
 			
-			JLabel labelTesto = new JLabel("Ordini");
+			labelTesto = new JLabel("Ordini");
 			labelTesto.setBounds(5, 150, 429, 30);
 			labelTesto.setBackground(Color.WHITE);
 			labelTesto.setForeground(Color.BLACK);
@@ -89,7 +96,7 @@ public class Ordini extends JFrame {
 			panel.add(labelTesto);
 			
 			// VIEW ORDINI
-			String[] columnNames = {"id","totale","data","ora","ip","pagamento","consegna"};
+			String[] columnNames = {"#","Totale","Data","Ora","Pagamento","Consegna"};
 			Object[][] data = model.getOrdini();
 			
 			TableModel modelTable = new DefaultTableModel(data, columnNames){

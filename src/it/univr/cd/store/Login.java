@@ -16,9 +16,12 @@ public class Login extends JFrame {
     JPasswordField password;
     JButton buttonClick;
     Model model = new Model();
+    private JFrame frame;
     
     // COSTRUTTORE
-	public Login() {
+	public Login(JFrame frame) {
+		this.frame = frame;
+		
 		// frame init
     	setTitle("LOGIN CD-STORE");
     	setResizable(false);
@@ -84,6 +87,8 @@ public class Login extends JFrame {
 					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
+					
+					// open new frame
 					if (Control.getLogged()){
 						Catalogo viewCatalogo;
 						try {
@@ -93,9 +98,12 @@ public class Login extends JFrame {
 							e1.printStackTrace();
 						}
 						setVisible(false);
+						// close old frame
+						frame.setVisible(false);
 					}
 					else{
-						Login viewLogin = new Login();
+						JOptionPane.showMessageDialog(null,"Username o Password errati!","Errore", 1);
+						Login viewLogin = new Login(frame);
 						viewLogin.setVisible(true);
 						setVisible(false);
 					}

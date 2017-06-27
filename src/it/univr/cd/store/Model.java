@@ -71,13 +71,36 @@ public class Model {
 		}
 	}
 	
+	public String getUsername(int user_id) throws ClassNotFoundException,SQLException,ParseException {
+		// Caricamento driver
+		Class.forName("org.postgresql.Driver");
+				
+		// Creazione connessione
+		try (Connection con=DriverManager.getConnection(getConnectionServer(),getConnectionUser(),getConnectionPwd())) {
+					
+			// Interrogazione e stampa
+			try(Statement st=con.createStatement()) {
+				PreparedStatement pst = con.prepareStatement("SELECT user_id FROM cliente WHERE id=?");
+				pst.setInt(1, user_id);
+				ResultSet rs = pst.executeQuery();
+				rs.next();
+				return rs.getString("user_id");
+			}catch(SQLException e) {
+				System.out.println("Errore durante estrazione dati: " + e.getMessage());
+				return null;
+			}	
+		}catch(SQLException e) {
+			System.out.println("Problema durante la connessione iniziale alla base di dati: " + e.getMessage());
+			return null;
+		}
+	}
+	
 	public Object[][] getCatalogo() throws ClassNotFoundException,SQLException,ParseException {
 		// Caricamento driver
 		Class.forName("org.postgresql.Driver");
 		
 		// Creazione connessione
 		try (Connection con=DriverManager.getConnection(getConnectionServer(),getConnectionUser(),getConnectionPwd())) {
-			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
 			// Interrogazione e stampa
 			try(Statement st=con.createStatement()) {
@@ -85,14 +108,15 @@ public class Model {
 				rs.next();
 				int size = rs.getInt("rowcount");
 				
-				rs = st.executeQuery("SELECT id,titolo,prezzo,data_sito FROM disco");
-				Object[][] obj = new Object[size][4];
+				rs = st.executeQuery("SELECT D.id AS id, D.titolo AS titolo, A.nome AS artista, D.prezzo AS prezzo, D.quantita AS quantita FROM disco AS D JOIN artista AS A ON D.id_artista=A.id");
+				Object[][] obj = new Object[size][5];
 				int i = 0;
 				while (rs.next()) {
 					obj[i][0] = rs.getInt("id");
 					obj[i][1] = rs.getString("titolo");
-					obj[i][2] = String.format("%3.2f", rs.getFloat("prezzo"));
-					obj[i][3] = sdf.format(rs.getDate("data_sito"));
+					obj[i][2] = rs.getString("artista");
+					obj[i][3] = String.format("%3.2f €", rs.getFloat("prezzo"));
+					obj[i][4] = rs.getInt("quantita");
 					i++;
 				}
 				return obj;		
@@ -126,7 +150,7 @@ public class Model {
 				ResultSet rs = pst.executeQuery();
 				rs.next();
 				result += String.format("%-24s: %-50s", "Titolo",rs.getString("titolo")) + "\n";
-				result += String.format("%-23s: %-3.2f euro", "Prezzo",rs.getFloat("prezzo")) + "\n";
+				result += String.format("%-23s: %-3.2f €", "Prezzo",rs.getFloat("prezzo")) + "\n";
 				result += String.format("%-16s: %-20s", "Data Inserimento",sdf.format(rs.getDate("data_sito"))) + "\n";
 				result += String.format("%-24s: %-50s", "Artista",rs.getString("artista")) + "\n";
 				result += String.format("%-20s: %-50s", "Descrizione",rs.getString("descrizione")) + "\n";
@@ -276,7 +300,7 @@ public class Model {
 				while (rs.next()) {
 					obj[i][0] = rs.getInt("id");
 					obj[i][1] = rs.getString("titolo");
-					obj[i][2] = String.format("%3.2f", rs.getFloat("prezzo"));
+					obj[i][2] = String.format("%3.2f €", rs.getFloat("prezzo"));
 					obj[i][3] = sdf.format(rs.getDate("data_sito"));
 					i++;
 				}
@@ -523,7 +547,7 @@ public class Model {
 				tot_carrello = String.format("%3.2f", rs.getFloat("tot_carrello"));
 				return tot_carrello;
 			}catch(SQLException e) {
-				System.out.println("EErrore durante estrazione dati: " + e.getMessage());
+				System.out.println("Errore durante estrazione dati: " + e.getMessage());
 				return null;
 			}
 				
@@ -623,19 +647,18 @@ public class Model {
 				rs.next();
 				int size = rs.getInt("rowcount");
 				
-				pst = con.prepareStatement("SELECT id,prezzo,data_acquisto,ora_acquisto,indirizzo_ip,modalita_pagamento,modalita_consegna "
+				pst = con.prepareStatement("SELECT id,prezzo,data_acquisto,ora_acquisto,modalita_pagamento,modalita_consegna "
 						                 + "FROM ordine "
 						                 + "WHERE id_cliente=?");
 				pst.setInt(1, Control.getUserId());
 				rs = pst.executeQuery();
-				Object[][] obj = new Object[size][7];
+				Object[][] obj = new Object[size][6];
 				int i = 0;
 				while (rs.next()) {
 					obj[i][0] = rs.getInt("id");
-					obj[i][1] = String.format("%3.2f", rs.getFloat("prezzo"));
+					obj[i][1] = String.format("%3.2f €", rs.getFloat("prezzo"));
 					obj[i][2] = sdf.format(rs.getDate("data_acquisto"));
 					obj[i][3] = stf.format(rs.getTime("ora_acquisto"));
-					obj[i][4] = rs.getString("indirizzo_ip");
 					String str_pagamento = "";
 					String pagamento = rs.getString("modalita_pagamento");
 					if (pagamento.equals("BONIF"))
@@ -644,14 +667,14 @@ public class Model {
 						str_pagamento = "CARTA DI CREDITO";
 					if (pagamento.equals("PAYPA"))
 						str_pagamento = "PAYPAL";
-					obj[i][5] = str_pagamento;
+					obj[i][4] = str_pagamento;
 					String str_consegna = "";
 					String consegna  = rs.getString("modalita_consegna");
 					if (consegna.equals("CORRI"))
 						str_consegna = "CORRIERE";
 					if (consegna.equals("POSTA"))
 						str_consegna = "POSTA";
-					obj[i][6] = str_consegna;
+					obj[i][5] = str_consegna;
 					i++;
 				}
 				return obj;		

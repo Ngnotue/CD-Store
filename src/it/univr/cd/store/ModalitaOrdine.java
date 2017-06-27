@@ -94,7 +94,7 @@ public class ModalitaOrdine extends JFrame {
 			panel.add(cons_corriere);
 			panel.add(cons_posta);
 			
-			JLabel labelPrezzoCorriere = new JLabel("Prezzo:    + 5,00 euro");
+			JLabel labelPrezzoCorriere = new JLabel("Prezzo:    + 5,00 €");
 			labelPrezzoCorriere.setBounds(250, 220, 429, 30);
 			labelPrezzoCorriere.setBackground(Color.WHITE);
 			labelPrezzoCorriere.setForeground(Color.BLACK);
@@ -106,7 +106,7 @@ public class ModalitaOrdine extends JFrame {
 			labelPrezzoCorriere2.setForeground(Color.BLACK);
 			panel.add(labelPrezzoCorriere2);
 			
-			JLabel labelPrezzoPosta = new JLabel("Prezzo:    + 0,00 euro");
+			JLabel labelPrezzoPosta = new JLabel("Prezzo:    + 0,00 €");
 			labelPrezzoPosta.setBounds(250, 300, 429, 30);
 			labelPrezzoPosta.setBackground(Color.WHITE);
 			labelPrezzoPosta.setForeground(Color.BLACK);
@@ -161,34 +161,21 @@ public class ModalitaOrdine extends JFrame {
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					try {
-						boolean bool_bonifico = pag_bonifico.isSelected();
 						boolean bool_cartacredito = pag_cartacredito.isSelected();
 						boolean bool_paypal = pag_paypal.isSelected();
-						String scelta_pagamento = "";
-						if (bool_bonifico)
-							scelta_pagamento = "BONIF";
+						int scelta = 0;
 						if (bool_cartacredito)
-							scelta_pagamento = "CARTA";
+							scelta = 1;
 						if (bool_paypal)
-							scelta_pagamento = "PAYPA";
+							scelta = 2;
 						boolean bool_corriere = cons_corriere.isSelected();
-						boolean bool_posta = cons_posta.isSelected();
-						String scelta_consegna = "";
-						if (bool_corriere)
-							scelta_consegna = "CORRI";
-						if (bool_posta)
-							scelta_consegna = "POSTA";
-						model.createOrdine(scelta_pagamento, scelta_consegna);
-						model.deleteCarrello();
+						
+						Pagamento viewPagamento = new Pagamento(scelta,bool_corriere);
+						viewPagamento.setVisible(true);
+						setVisible(true);
+						
 					} catch (Exception e2) {
 						e2.printStackTrace();
-					}
-					Ordini viewOrdini;
-					try {
-						viewOrdini = new Ordini();
-						viewOrdini.setVisible(true);
-					} catch (Exception e1) {
-						e1.printStackTrace();
 					}
 					setVisible(false);
 				}

@@ -25,6 +25,7 @@ public class Info extends JFrame {
     JTextField username;
     JPasswordField password;
     Model model = new Model();
+    JFrame frame = this;
     private int id;
 	
 	// COSTRUTTORE
@@ -53,41 +54,21 @@ public class Info extends JFrame {
 		panel.setLayout(null);
 		
 		JLabel labelTesto;
-		if(!(Control.getLogged())){
-			labelTesto = new JLabel("Accedi");
-			labelTesto.setBounds(5, 5, 429, 30);
+		if(Control.getLogged()){
+			labelTesto = new JLabel("User: " + model.getUsername(Control.getUserId()));
+			labelTesto.setBounds(5, 5, 100, 30);
 			labelTesto.setBackground(Color.WHITE);
 			labelTesto.setForeground(Color.BLACK);
-			labelTesto.setHorizontalAlignment(SwingConstants.CENTER);
 			panel.add(labelTesto);
-			
-			JLabel labelUsername = new JLabel("Username");
-			labelUsername.setHorizontalAlignment(SwingConstants.LEFT);
-			labelUsername.setBounds(5, 46, 97, 20);
-			panel.add(labelUsername);
-			
-			username = new JTextField();
-			username.setBounds(262, 46, 172, 20);
-			panel.add(username);
-			username.setColumns(16);
-			
-			JLabel labelPassword = new JLabel("Password");
-			labelPassword.setHorizontalAlignment(SwingConstants.LEFT);
-			labelPassword.setBounds(5, 90, 97, 20);
-			panel.add(labelPassword);
-			
-			password = new JPasswordField();
-			password.setEchoChar('*');
-			password.setBounds(262, 90, 172, 20);
-			panel.add(password);
 		}
-		else{
-			JButton buttonCarrello = new JButton("Il mio Carrello");
-			buttonCarrello.setBounds(5, 46, 189, 23);
-			panel.add(buttonCarrello);
-			buttonCarrello.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
+		
+		JButton buttonCarrello = new JButton("Il mio Carrello");
+		buttonCarrello.setBounds(5, 46, 189, 23);
+		panel.add(buttonCarrello);
+		buttonCarrello.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (Control.getLogged()){
 					try {
 						Carrello viewCarrello = new Carrello();
 						viewCarrello.setVisible(true);
@@ -96,14 +77,20 @@ public class Info extends JFrame {
 					}
 					setVisible(false);
 				}
-			});
-			
-			JButton buttonOrdine = new JButton("I miei Ordini");
-			buttonOrdine.setBounds(5, 100, 189, 23);
-			panel.add(buttonOrdine);
-			buttonOrdine.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
+				else{
+					Login viewLogin = new Login(frame);
+					viewLogin.setVisible(true);
+				}
+			}
+		});
+		
+		JButton buttonOrdine = new JButton("I miei Ordini");
+		buttonOrdine.setBounds(5, 100, 189, 23);
+		panel.add(buttonOrdine);
+		buttonOrdine.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (Control.getLogged()){
 					try {
 						Ordini viewOrdini = new Ordini();
 						viewOrdini.setVisible(true);
@@ -112,9 +99,13 @@ public class Info extends JFrame {
 					}
 					setVisible(false);
 				}
-			});
-		}
-		
+				else{
+					Login viewLogin = new Login(frame);
+					viewLogin.setVisible(true);
+				}
+			}
+		});
+			
 		labelTesto = new JLabel("Informazioni Disco");
 		labelTesto.setBounds(5, 150, 429, 30);
 		labelTesto.setBackground(Color.WHITE);
@@ -212,10 +203,10 @@ public class Info extends JFrame {
 		});
 		
 		if(Control.getLogged()){
-			JButton buttonCarrello = new JButton("Aggiungi Carrello");
-			buttonCarrello.setBounds(340, 447, 100, 23);
-			panel.add(buttonCarrello);
-			buttonCarrello.addMouseListener(new MouseAdapter() {
+			JButton buttonAcquista = new JButton("Acquista");
+			buttonAcquista.setBounds(340, 447, 100, 23);
+			panel.add(buttonAcquista);
+			buttonAcquista.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					if (Control.getLogged()){
