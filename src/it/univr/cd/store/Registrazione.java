@@ -12,7 +12,6 @@ public class Registrazione extends JFrame {
 		// frame init
     	setTitle("REGISTRAZIONE CD-STORE");
     	setResizable(false);
-    	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	setBounds(400, 200, 450, 300);
     
     	// funzioni

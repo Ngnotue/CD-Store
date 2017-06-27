@@ -159,8 +159,13 @@ public class Carrello extends JFrame {
 				public void mouseClicked(MouseEvent e) {
 					Control.setUserId(0);
 					Control.setLogged(false);
-					View view = new View();
-					view.setVisible(true);
+					Catalogo viewCatalogo;
+					try {
+						viewCatalogo = new Catalogo();
+						viewCatalogo.setVisible(true);
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
 					setVisible(false);
 				}
 			});

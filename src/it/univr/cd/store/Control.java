@@ -10,8 +10,14 @@ public class Control {
 		//INIZIO ESECUZIONE
 		System.out.println("Inizio Esecuzione");
 		
-		View view = new View();
-		view.setVisible(true);
+		Catalogo viewCatalogo;
+		try {
+			viewCatalogo = new Catalogo();
+			viewCatalogo.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		
 		System.out.println("Fine Esecuzione");
 		//FINE ESECUZIONE

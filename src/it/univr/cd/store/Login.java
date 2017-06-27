@@ -7,7 +7,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
-public class View extends JFrame {
+public class Login extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
 	// ATTRIBUTI
@@ -18,11 +18,10 @@ public class View extends JFrame {
     Model model = new Model();
     
     // COSTRUTTORE
-	public View() {
+	public Login() {
 		// frame init
     	setTitle("LOGIN CD-STORE");
     	setResizable(false);
-    	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	setBounds(400, 200, 450, 300);
     
     	// funzioni
@@ -96,8 +95,8 @@ public class View extends JFrame {
 						setVisible(false);
 					}
 					else{
-						View view = new View();
-						view.setVisible(true);
+						Login viewLogin = new Login();
+						viewLogin.setVisible(true);
 						setVisible(false);
 					}
 				}
@@ -111,27 +110,9 @@ public class View extends JFrame {
 				public void mouseClicked(MouseEvent e) {
 					Registrazione viewRegistrazione = new Registrazione();
 					viewRegistrazione.setVisible(true);
-					setVisible(false);
 				}
 			});
 		}
-		
-		JButton buttonCatalogo = new JButton("Catalogo");
-		buttonCatalogo.setBounds(235, 227, 100, 23);
-		panel.add(buttonCatalogo);
-		buttonCatalogo.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				Catalogo viewCatalogo;
-				try {
-					viewCatalogo = new Catalogo();
-					viewCatalogo.setVisible(true);
-				} catch (Exception e1) {
-					e1.printStackTrace();
-				}
-				setVisible(false);
-			}
-		});
 		
 		JButton buttonExit = new JButton("Esci");
 		buttonExit.setBounds(345, 227, 89, 23);
