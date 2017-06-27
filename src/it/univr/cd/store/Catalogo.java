@@ -103,7 +103,7 @@ public class Catalogo extends JFrame {
 		labelTesto.setHorizontalAlignment(SwingConstants.CENTER);
 		panel.add(labelTesto);
 		
-		String[] columnNames = {"id","titolo","prezzo","data_sito"};
+		String[] columnNames = {"#","Titolo","Artista","Prezzo","Quantità"};
 		Object[][] data = model.getCatalogo();
 		
 		TableModel modelTable = new DefaultTableModel(data, columnNames){
@@ -142,16 +142,6 @@ public class Catalogo extends JFrame {
 				}
 			}
 		});
-		
-		JLabel labelTextField = new JLabel("Ricerca: ");
-		labelTextField.setHorizontalAlignment(SwingConstants.LEFT);
-		labelTextField.setBounds(5, 395, 97, 20);
-		panel.add(labelTextField);
-		
-		field = new JTextField();
-		field.setBounds(55, 395, 172, 20);
-		panel.add(field);
-		field.setColumns(16);
 		
 		if(!(Control.getLogged())){
 			JButton buttonInvia = new JButton("Login");

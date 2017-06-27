@@ -94,7 +94,7 @@ public class ModalitaOrdine extends JFrame {
 			panel.add(cons_corriere);
 			panel.add(cons_posta);
 			
-			JLabel labelPrezzoCorriere = new JLabel("Prezzo:    + 5,00 euro");
+			JLabel labelPrezzoCorriere = new JLabel("Prezzo:    + 5,00 €");
 			labelPrezzoCorriere.setBounds(250, 220, 429, 30);
 			labelPrezzoCorriere.setBackground(Color.WHITE);
 			labelPrezzoCorriere.setForeground(Color.BLACK);
@@ -106,7 +106,7 @@ public class ModalitaOrdine extends JFrame {
 			labelPrezzoCorriere2.setForeground(Color.BLACK);
 			panel.add(labelPrezzoCorriere2);
 			
-			JLabel labelPrezzoPosta = new JLabel("Prezzo:    + 0,00 euro");
+			JLabel labelPrezzoPosta = new JLabel("Prezzo:    + 0,00 €");
 			labelPrezzoPosta.setBounds(250, 300, 429, 30);
 			labelPrezzoPosta.setBackground(Color.WHITE);
 			labelPrezzoPosta.setForeground(Color.BLACK);

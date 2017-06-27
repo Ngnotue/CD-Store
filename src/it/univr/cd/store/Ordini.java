@@ -89,7 +89,7 @@ public class Ordini extends JFrame {
 			panel.add(labelTesto);
 			
 			// VIEW ORDINI
-			String[] columnNames = {"id","totale","data","ora","ip","pagamento","consegna"};
+			String[] columnNames = {"#","Totale","Data","Ora","Pagamento","Consegna"};
 			Object[][] data = model.getOrdini();
 			
 			TableModel modelTable = new DefaultTableModel(data, columnNames){

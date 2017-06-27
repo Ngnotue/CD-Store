@@ -89,7 +89,7 @@ public class Carrello extends JFrame {
 			panel.add(labelTesto);
 			
 			// VIEW CARRELLO
-			String[] columnNames = {"id","titolo","prezzo","data_sito"};
+			String[] columnNames = {"#","Titolo","Prezzo","Data inserimento"};
 			Object[][] data = model.getCarrello();
 			
 			TableModel modelTable = new DefaultTableModel(data, columnNames){
@@ -139,13 +139,13 @@ public class Carrello extends JFrame {
 			panel.add(labelTextField);
 			
 			if(model.rowCarrello() != 0){
-				JLabel labelTextTotale = new JLabel(model.getTotaleCarrello() + " euro");
+				JLabel labelTextTotale = new JLabel(model.getTotaleCarrello());
 				labelTextTotale.setHorizontalAlignment(SwingConstants.LEFT);
 				labelTextTotale.setBounds(55, 395, 97, 20);
 				panel.add(labelTextTotale);
 			}
 			else{
-				JLabel labelTextTotale = new JLabel("0,00 euro");
+				JLabel labelTextTotale = new JLabel("0,00 €");
 				labelTextTotale.setHorizontalAlignment(SwingConstants.LEFT);
 				labelTextTotale.setBounds(55, 395, 97, 20);
 				panel.add(labelTextTotale);
