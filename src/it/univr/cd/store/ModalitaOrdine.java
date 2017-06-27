@@ -161,34 +161,21 @@ public class ModalitaOrdine extends JFrame {
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					try {
-						boolean bool_bonifico = pag_bonifico.isSelected();
 						boolean bool_cartacredito = pag_cartacredito.isSelected();
 						boolean bool_paypal = pag_paypal.isSelected();
-						String scelta_pagamento = "";
-						if (bool_bonifico)
-							scelta_pagamento = "BONIF";
+						int scelta = 0;
 						if (bool_cartacredito)
-							scelta_pagamento = "CARTA";
+							scelta = 1;
 						if (bool_paypal)
-							scelta_pagamento = "PAYPA";
+							scelta = 2;
 						boolean bool_corriere = cons_corriere.isSelected();
-						boolean bool_posta = cons_posta.isSelected();
-						String scelta_consegna = "";
-						if (bool_corriere)
-							scelta_consegna = "CORRI";
-						if (bool_posta)
-							scelta_consegna = "POSTA";
-						model.createOrdine(scelta_pagamento, scelta_consegna);
-						model.deleteCarrello();
+						
+						Pagamento viewPagamento = new Pagamento(scelta,bool_corriere);
+						viewPagamento.setVisible(true);
+						setVisible(true);
+						
 					} catch (Exception e2) {
 						e2.printStackTrace();
-					}
-					Ordini viewOrdini;
-					try {
-						viewOrdini = new Ordini();
-						viewOrdini.setVisible(true);
-					} catch (Exception e1) {
-						e1.printStackTrace();
 					}
 					setVisible(false);
 				}
