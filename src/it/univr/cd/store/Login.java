@@ -95,6 +95,7 @@ public class Login extends JFrame {
 						setVisible(false);
 					}
 					else{
+						JOptionPane.showMessageDialog(null,"Username o Password errati!","Errore", 1);
 						Login viewLogin = new Login();
 						viewLogin.setVisible(true);
 						setVisible(false);
