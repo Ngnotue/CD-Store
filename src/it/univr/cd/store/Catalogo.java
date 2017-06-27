@@ -28,6 +28,7 @@ public class Catalogo extends JFrame {
     JTextField username,field;
     JPasswordField password;
     Model model = new Model();
+    JFrame frame = this;
 	
 	// COSTRUTTORE
 	public Catalogo() throws ClassNotFoundException, SQLException, ParseException{
@@ -44,7 +45,7 @@ public class Catalogo extends JFrame {
         setVisible(true);
 	}
 	
-	// METODI
+	// METODI	
 	private void template_catalogo() throws ClassNotFoundException, SQLException, ParseException {    
 		panel = new JPanel();
 		panel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -67,7 +68,7 @@ public class Catalogo extends JFrame {
 					setVisible(false);
 				}
 				else{
-					Login viewLogin = new Login();
+					Login viewLogin = new Login(frame);
 					viewLogin.setVisible(true);
 				}
 			}
@@ -89,7 +90,7 @@ public class Catalogo extends JFrame {
 					setVisible(false);
 				}
 				else{
-					Login viewLogin = new Login();
+					Login viewLogin = new Login(frame);
 					viewLogin.setVisible(true);
 				}
 			}
@@ -150,7 +151,7 @@ public class Catalogo extends JFrame {
 			buttonInvia.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					Login viewLogin = new Login();
+					Login viewLogin = new Login(frame);
 					viewLogin.setVisible(true);
 				}
 			});

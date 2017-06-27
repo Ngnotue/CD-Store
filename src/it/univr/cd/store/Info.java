@@ -25,6 +25,7 @@ public class Info extends JFrame {
     JTextField username;
     JPasswordField password;
     Model model = new Model();
+    JFrame frame = this;
     private int id;
 	
 	// COSTRUTTORE
@@ -68,7 +69,7 @@ public class Info extends JFrame {
 					setVisible(false);
 				}
 				else{
-					Login viewLogin = new Login();
+					Login viewLogin = new Login(frame);
 					viewLogin.setVisible(true);
 				}
 			}
@@ -90,7 +91,7 @@ public class Info extends JFrame {
 					setVisible(false);
 				}
 				else{
-					Login viewLogin = new Login();
+					Login viewLogin = new Login(frame);
 					viewLogin.setVisible(true);
 				}
 			}
