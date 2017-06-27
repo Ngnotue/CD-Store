@@ -71,6 +71,30 @@ public class Model {
 		}
 	}
 	
+	public String getUsername(int user_id) throws ClassNotFoundException,SQLException,ParseException {
+		// Caricamento driver
+		Class.forName("org.postgresql.Driver");
+				
+		// Creazione connessione
+		try (Connection con=DriverManager.getConnection(getConnectionServer(),getConnectionUser(),getConnectionPwd())) {
+					
+			// Interrogazione e stampa
+			try(Statement st=con.createStatement()) {
+				PreparedStatement pst = con.prepareStatement("SELECT user_id FROM cliente WHERE id=?");
+				pst.setInt(1, user_id);
+				ResultSet rs = pst.executeQuery();
+				rs.next();
+				return rs.getString("user_id");
+			}catch(SQLException e) {
+				System.out.println("Errore durante estrazione dati: " + e.getMessage());
+				return null;
+			}	
+		}catch(SQLException e) {
+			System.out.println("Problema durante la connessione iniziale alla base di dati: " + e.getMessage());
+			return null;
+		}
+	}
+	
 	public Object[][] getCatalogo() throws ClassNotFoundException,SQLException,ParseException {
 		// Caricamento driver
 		Class.forName("org.postgresql.Driver");

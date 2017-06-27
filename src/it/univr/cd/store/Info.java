@@ -53,6 +53,15 @@ public class Info extends JFrame {
 		setContentPane(panel);
 		panel.setLayout(null);
 		
+		JLabel labelTesto;
+		if(Control.getLogged()){
+			labelTesto = new JLabel("User: " + model.getUsername(Control.getUserId()));
+			labelTesto.setBounds(5, 5, 100, 30);
+			labelTesto.setBackground(Color.WHITE);
+			labelTesto.setForeground(Color.BLACK);
+			panel.add(labelTesto);
+		}
+		
 		JButton buttonCarrello = new JButton("Il mio Carrello");
 		buttonCarrello.setBounds(5, 46, 189, 23);
 		panel.add(buttonCarrello);
@@ -96,8 +105,7 @@ public class Info extends JFrame {
 				}
 			}
 		});
-		
-		JLabel labelTesto;		
+			
 		labelTesto = new JLabel("Informazioni Disco");
 		labelTesto.setBounds(5, 150, 429, 30);
 		labelTesto.setBackground(Color.WHITE);
