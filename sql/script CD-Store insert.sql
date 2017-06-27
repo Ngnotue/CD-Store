@@ -1,7 +1,7 @@
 INSERT INTO CLIENTE(user_id,pwd,cod_fiscale,nome,cognome,citta_residenza,telefono,cellulare)
 	VALUES 	('gbellorio','gbellorio','BLLGNN95H18L781X','Giovanni','Bellorio','Bosco Chiesanuova','0457050306','3207522170'),
-		('aslemer','aslemer','XXXXXXXXXXXXXXXX','Andrea','Slemer','Verona','XXXXXXXXXX','XXXXXXXXXX'),
-		('dimola','dimola','XXXXXXXXXXXXXXXY','Davide','Imola','Verona','XXXXXXXXXX','XXXXXXXXXX');
+		('aslemer','aslemer','SLMNDR95H14L781L','Andrea','Slemer','Quinto di Valpantena','045724531','3490624424'),
+		('dimola','dimola','MLIDVD95H29L781K','Davide','Imola','Verona','045576079','3405169342');
 
 INSERT INTO ARTISTA(nome)
 	VALUES 	('Ligabue'),('Zucchero'),('Vasco Rossi'),('Laura Pausini');
