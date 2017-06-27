@@ -146,7 +146,7 @@ public class Carrello extends JFrame {
 			panel.add(labelTextField);
 			
 			if(model.rowCarrello() != 0){
-				JLabel labelTextTotale = new JLabel(model.getTotaleCarrello());
+				JLabel labelTextTotale = new JLabel(model.getTotaleCarrello() + " €");
 				labelTextTotale.setHorizontalAlignment(SwingConstants.LEFT);
 				labelTextTotale.setBounds(55, 395, 97, 20);
 				panel.add(labelTextTotale);

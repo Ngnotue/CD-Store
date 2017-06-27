@@ -544,7 +544,7 @@ public class Model {
 				pst.setInt(1, id_carrello);
 				rs = pst.executeQuery();
 				rs.next();
-				tot_carrello = String.format("%3.2f €", rs.getFloat("tot_carrello"));
+				tot_carrello = String.format("%3.2f", rs.getFloat("tot_carrello"));
 				return tot_carrello;
 			}catch(SQLException e) {
 				System.out.println("Errore durante estrazione dati: " + e.getMessage());
