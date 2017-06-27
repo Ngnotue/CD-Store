@@ -3,13 +3,6 @@ INSERT INTO CLIENTE(user_id,pwd,cod_fiscale,nome,cognome,citta_residenza,telefon
 		('aslemer','aslemer','XXXXXXXXXXXXXXXX','Andrea','Slemer','Verona','XXXXXXXXXX','XXXXXXXXXX'),
 		('dimola','dimola','XXXXXXXXXXXXXXXY','Davide','Imola','Verona','XXXXXXXXXX','XXXXXXXXXX');
 
-INSERT INTO ORDINE(id_cliente,prezzo,data_acquisto,ora_acquisto,indirizzo_ip,modalita_pagamento,modalita_consegna)
-	VALUES 	(1,10.20,'2016-05-28','16:10','155.16.1.1','CARTA','POSTA'),
-		(1,50.00,'2017-02-10','10:00','155.16.1.10','CARTA','CORRI');
-
-INSERT INTO CARRELLO(id_cliente)
-	VALUES 	(1);
-
 INSERT INTO ARTISTA(nome)
 	VALUES 	('Ligabue'),('Zucchero'),('Vasco Rossi'),('Laura Pausini');
 
@@ -38,12 +31,6 @@ INSERT INTO TITOLO(id_disco,nome_canzone)
 
 INSERT INTO DISCO_GENERE(id_disco,id_genere)
 	VALUES 	(1,2);
-
-INSERT INTO CARRELLO_DISCO(id_carrello,id_disco)
-	VALUES 	(1,1);
-
-INSERT INTO ORDINE_DISCO(id_ordine,id_disco)
-	VALUES 	(1,1),(2,1);
 
 INSERT INTO STRUMENTO(nome)
 	VALUES 	('Batteria'),('Chitarra'),('Sax');
