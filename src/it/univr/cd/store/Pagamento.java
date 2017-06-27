@@ -55,8 +55,10 @@ private static final long serialVersionUID = 1L;
 			labelTesto.setHorizontalAlignment(SwingConstants.CENTER);
 			panel.add(labelTesto);
 			
-			// MODALITA' PAGAMENTO	
-			
+			// MODALITA' PAGAMENTO
+			//
+			//
+			//
 			
 			
 			JButton buttonInvia = new JButton("Logout");

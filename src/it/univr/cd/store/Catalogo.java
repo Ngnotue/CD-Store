@@ -51,7 +51,6 @@ public class Catalogo extends JFrame {
 		setContentPane(panel);
 		panel.setLayout(null);
 		
-		
 		JButton buttonCarrello = new JButton("Il mio Carrello");
 		buttonCarrello.setBounds(5, 46, 189, 23);
 		panel.add(buttonCarrello);
