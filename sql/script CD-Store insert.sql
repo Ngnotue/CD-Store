@@ -4,7 +4,7 @@ INSERT INTO CLIENTE(user_id,pwd,cod_fiscale,nome,cognome,citta_residenza,telefon
 		('dimola','dimola','MLIDVD95H29L781K','Davide','Imola','Verona','045576079','3405169342');
 
 INSERT INTO ARTISTA(nome)
-	VALUES 	('Ligabue'),('Zucchero'),('Vasco Rossi'),('Laura Pausini');
+	VALUES 	('Ligabue'),('Ed Sheeran'),('Linkin Park'),('System Of A Down'),('AC/DC'),('Guns N'' Roses'),('Coldplay');
 
 INSERT INTO GENERE(nome)
 	VALUES 	('Pop'),('Rock'),('Blues'),('Hard-Rock');
@@ -20,7 +20,11 @@ INSERT INTO ARTISTA_MUSICISTA(id_artista,id_musicista)
 	VALUES 	(2,1),(1,5);
 
 INSERT INTO DISCO(titolo,prezzo,data_sito,id_artista,descrizione,quantita)
-	VALUES 	('Made in Italy',15.00,'2017-01-01',1,'Album Luciano Ligabue 14 Canzoni',20);
+	VALUES 	('Made in Italy',15.00,'2017-01-01',1,'14 brani, 49 min',20),
+					('LIVING THINGS',14.38,'2017-01-01',3,'12 brani, 37 min',5),
+					('Toxicity',7.50,'2017-01-01',4,'15 brani, 44 min',20),
+					('A Head Full Of Dreams',8.99,'2017-01-01',7,'11 brani, 45 min',15),
+					('Appetite For Destruction',9.18,'2017-01-01',6,'15 brani, 44 min',22);
 
 INSERT INTO TITOLO(id_disco,nome_canzone)
 	VALUES 	(1,'La vita facile'),
@@ -30,7 +34,7 @@ INSERT INTO TITOLO(id_disco,nome_canzone)
 		(1,'G come giungla');
 
 INSERT INTO DISCO_GENERE(id_disco,id_genere)
-	VALUES 	(1,2);
+	VALUES 	(1,2),(2,4),(3,4),(4,1),(5,2);
 
 INSERT INTO STRUMENTO(nome)
 	VALUES 	('Batteria'),('Chitarra'),('Sax');

@@ -18,7 +18,6 @@ public class Control {
 			e.printStackTrace();
 		}
 		
-		
 		System.out.println("Fine Esecuzione");
 		//FINE ESECUZIONE
 	}
