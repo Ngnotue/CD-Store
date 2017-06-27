@@ -14,7 +14,7 @@ public class Model {
 	
 	// METODI
 	private String getConnectionServer(){
-		String server   = "localhost";
+		String server   = "37.59.212.144";
 		String database = "id367xdk";
 		return "jdbc:postgresql://"+server+":5432/"+database;
 	}
@@ -25,7 +25,7 @@ public class Model {
 	}
 	
 	private String getConnectionPwd(){
-		String pwd = "Bacibaci.1995";
+		String pwd = "apassword";
 		return pwd;
 	}
 	
@@ -547,7 +547,11 @@ public class Model {
 			try (PreparedStatement pst=con.prepareStatement("INSERT INTO ordine(id_cliente,prezzo,data_acquisto,ora_acquisto,modalita_pagamento,modalita_consegna) VALUES (?,?,?,?,?,?)")) {
 				pst.clearParameters();
 				pst.setInt(1, Control.getUserId());
-				pst.setInt(2, Integer.parseInt(getTotaleCarrello()));
+				String tot = getTotaleCarrello().replace(",", ".");
+				if (mod_consegna.equals("CORRI"))
+					pst.setFloat(2, (Float.parseFloat(tot)+(float)5.00));
+				else
+					pst.setFloat(2, Float.parseFloat(tot));
 				pst.setDate(3, new Date( sdf.parse(sdf.format(Calendar.getInstance().getTime())).getTime() ));
 				pst.setTime(4, new Time( stf.parse(stf.format(Calendar.getInstance().getTime())).getTime() ));
 				pst.setString(5, mod_pagamento);

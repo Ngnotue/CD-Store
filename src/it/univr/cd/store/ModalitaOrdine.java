@@ -84,7 +84,7 @@ public class ModalitaOrdine extends JFrame {
 			JRadioButton cons_corriere = new JRadioButton("Corriere");
 			JRadioButton cons_posta = new JRadioButton("Posta");
 			cons_corriere.setBounds(120, 220, 130, 30);
-			cons_posta.setBounds(120, 260, 130, 30);
+			cons_posta.setBounds(120, 300, 130, 30);
 			ButtonGroup grp_cons = new ButtonGroup();
 			grp_cons.add(cons_corriere);
 			grp_cons.add(cons_posta);
@@ -94,6 +94,30 @@ public class ModalitaOrdine extends JFrame {
 			panel.add(cons_corriere);
 			panel.add(cons_posta);
 			
+			JLabel labelPrezzoCorriere = new JLabel("Prezzo:    + 5,00 euro");
+			labelPrezzoCorriere.setBounds(250, 220, 429, 30);
+			labelPrezzoCorriere.setBackground(Color.WHITE);
+			labelPrezzoCorriere.setForeground(Color.BLACK);
+			panel.add(labelPrezzoCorriere);
+			
+			JLabel labelPrezzoCorriere2 = new JLabel("Consegna: 2/3 giorni");
+			labelPrezzoCorriere2.setBounds(250, 260, 429, 30);
+			labelPrezzoCorriere2.setBackground(Color.WHITE);
+			labelPrezzoCorriere2.setForeground(Color.BLACK);
+			panel.add(labelPrezzoCorriere2);
+			
+			JLabel labelPrezzoPosta = new JLabel("Prezzo:    + 0,00 euro");
+			labelPrezzoPosta.setBounds(250, 300, 429, 30);
+			labelPrezzoPosta.setBackground(Color.WHITE);
+			labelPrezzoPosta.setForeground(Color.BLACK);
+			panel.add(labelPrezzoPosta);
+			
+			JLabel labelPrezzoPosta2 = new JLabel("Consegna: 5/7 giorni");
+			labelPrezzoPosta2.setBounds(250, 340, 429, 30);
+			labelPrezzoPosta2.setBackground(Color.WHITE);
+			labelPrezzoPosta2.setForeground(Color.BLACK);
+			panel.add(labelPrezzoPosta2);
+			
 			JButton buttonInvia = new JButton("Logout");
 			buttonInvia.setBounds(5, 447, 89, 23);
 			panel.add(buttonInvia);
@@ -102,8 +126,13 @@ public class ModalitaOrdine extends JFrame {
 				public void mouseClicked(MouseEvent e) {
 					Control.setUserId(0);
 					Control.setLogged(false);
-					View view = new View();
-					view.setVisible(true);
+					Catalogo viewCatalogo;
+					try {
+						viewCatalogo = new Catalogo();
+						viewCatalogo.setVisible(true);
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
 					setVisible(false);
 				}
 			});
