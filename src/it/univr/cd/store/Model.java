@@ -17,8 +17,7 @@ public class Model {
 	
 	// METODI
 	private String getConnectionServer(){
-		//String server   = "37.59.212.144";
-		String server = "localhost";
+		String server   = "37.59.212.144";
 		String database = "id367xdk";
 		return "jdbc:postgresql://"+server+":5432/"+database;
 	}
@@ -29,8 +28,7 @@ public class Model {
 	}
 	
 	private String getConnectionPwd(){
-		//String pwd = "apassword";
-		String pwd = "Bacibaci.1995";
+		String pwd = "apassword";
 		return pwd;
 	}
 	
