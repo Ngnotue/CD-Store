@@ -155,6 +155,7 @@ public class Registrazione extends JFrame {
 				if (exception == false){
 					// INSERT
 					try {
+						pwd = model.md5(pwd);
 						if(model.registrazione(textUserID.getText(), pwd, textCodiceFiscale.getText(), textNome.getText(), textCognom.getText(), textCitta.getText(), textTelefono.getText(), textCellulare.getText())){
 							JOptionPane.showMessageDialog(null, "Registrazione avvenuta!","Report",1);
 							setVisible(false);
