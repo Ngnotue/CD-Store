@@ -79,6 +79,7 @@ public class Login extends JFrame {
 						String pwd = "";
 						for(int i=0; i<password.getPassword().length; i++)
 							pwd += password.getPassword()[i];
+						pwd = model.md5(pwd);
 						Control.setUserId(model.login(username.getText(), pwd));
 						if(Control.getUserId() != 0)
 							Control.setLogged(true);

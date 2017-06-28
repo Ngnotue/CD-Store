@@ -20,6 +20,10 @@ public class Pagamento extends JFrame {
 private static final long serialVersionUID = 1L;
 	
 	// ATTRIBUTI
+	JTextField numero_carta;
+	JTextField codice_sicurezza;
+	JTextField titolare_carta;
+	JTextField email;
 	JPanel panel;
     Model model = new Model();
     private int scelta_pagamento;
@@ -119,7 +123,7 @@ private static final long serialVersionUID = 1L;
 					labelTesto.setForeground(Color.BLACK);
 					panel.add(labelTesto);
 					
-					JTextField numero_carta = new JTextField();
+					numero_carta = new JTextField();
 					numero_carta.setBounds(150, 90, 172, 30);
 					numero_carta.setColumns(16);
 					panel.add(numero_carta);
@@ -154,7 +158,7 @@ private static final long serialVersionUID = 1L;
 					labelTesto.setForeground(Color.BLACK);
 					panel.add(labelTesto);
 					
-					JTextField codice_sicurezza = new JTextField();
+					codice_sicurezza = new JTextField();
 					codice_sicurezza.setBounds(150, 150, 172, 30);
 					codice_sicurezza.setColumns(16);
 					panel.add(codice_sicurezza);
@@ -165,7 +169,7 @@ private static final long serialVersionUID = 1L;
 					labelTesto.setForeground(Color.BLACK);
 					panel.add(labelTesto);
 					
-					JTextField titolare_carta = new JTextField();
+					titolare_carta = new JTextField();
 					titolare_carta.setBounds(150, 180, 172, 30);
 					titolare_carta.setColumns(16);
 					panel.add(titolare_carta);
@@ -183,7 +187,7 @@ private static final long serialVersionUID = 1L;
 					labelTesto.setForeground(Color.BLACK);
 					panel.add(labelTesto);
 					
-					JTextField email = new JTextField();
+					email = new JTextField();
 					email.setBounds(150, 90, 172, 30);
 					email.setColumns(16);
 					panel.add(email);
@@ -232,6 +236,8 @@ private static final long serialVersionUID = 1L;
 			buttonConferma.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
+					String error = "";
+					boolean exception = false;
 					try {
 						String str_scelta_pagamento = "";
 						switch(scelta_pagamento){
@@ -239,10 +245,30 @@ private static final long serialVersionUID = 1L;
 								str_scelta_pagamento = "BONIF";
 								break;
 							case 1:
-								str_scelta_pagamento = "CARTA";
+								if(numero_carta.getText().equals("") || codice_sicurezza.getText().length() != 3 || titolare_carta.getText().equals("")){
+									error += "Uno o piu' campi sono vuoti o non validi\n";
+									exception = true;
+								}
+								
+								if(exception == false){
+									str_scelta_pagamento = "CARTA";
+								}
+								else{
+									JOptionPane.showMessageDialog(null, error + "Riprova!","Errore", 1);
+								}
 								break;
 							case 2:
-								str_scelta_pagamento = "PAYPA";
+								if(email.getText().equals("") || email.getText().indexOf('@') == -1){
+									error += "Mail inserita non valida\n";
+									exception = true;
+								}
+								
+								if(exception == false){
+									str_scelta_pagamento = "PAYPA";
+								}
+								else{
+									JOptionPane.showMessageDialog(null, error + "Riprova!","Errore", 1);
+								}
 								break;
 						}
 
@@ -251,20 +277,25 @@ private static final long serialVersionUID = 1L;
 							scelta_consegna = "CORRI";
 						else
 							scelta_consegna = "POSTA";
-						model.createOrdine(str_scelta_pagamento, scelta_consegna);
-						model.deleteCarrello();
-						JOptionPane.showMessageDialog(null,"Ordine confermato con successo!","Report", 1);
+						
+						if(exception == false){
+							model.createOrdine(str_scelta_pagamento, scelta_consegna);
+							model.deleteCarrello();
+							JOptionPane.showMessageDialog(null,"Ordine confermato con successo!","Report", 1);
+						}
 					} catch (Exception e2) {
 						e2.printStackTrace();
 					}
-					Ordini viewOrdini;
-					try {
-						viewOrdini = new Ordini();
-						viewOrdini.setVisible(true);
-					} catch (Exception e1) {
-						e1.printStackTrace();
+					if(exception == false){
+						Ordini viewOrdini;
+						try {
+							viewOrdini = new Ordini();
+							viewOrdini.setVisible(true);
+						} catch (Exception e1) {
+							e1.printStackTrace();
+						}
+						setVisible(false);
 					}
-					setVisible(false);
 				}
 			});
 		}

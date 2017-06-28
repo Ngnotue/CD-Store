@@ -1,7 +1,7 @@
 INSERT INTO CLIENTE(user_id,pwd,cod_fiscale,nome,cognome,citta_residenza,telefono,cellulare)
-	VALUES 	('gbellorio','gbellorio','BLLGNN95H18L781X','Giovanni','Bellorio','Bosco Chiesanuova','0457050306','3207522170'),
-		('aslemer','aslemer','SLMNDR95H14L781L','Andrea','Slemer','Quinto di Valpantena','045724531','3490624424'),
-		('dimola','dimola','MLIDVD95H29L781K','Davide','Imola','Verona','045576079','3405169342');
+	VALUES 	('gbellorio','1eea6419033bb33d941108e6920aec2','BLLGNN95H18L781X','Giovanni','Bellorio','Bosco Chiesanuova','0457050306','3207522170'),
+		('aslemer','b7559006ee35b381b4d109c2f54eff44','SLMNDR95H14L781L','Andrea','Slemer','Quinto di Valpantena','045724531','3490624424'),
+		('dimola','d0d8458ed4631d96e7f607e1b57c428a','MLIDVD95H29L781K','Davide','Imola','Verona','045576079','3405169342');
 
 INSERT INTO ARTISTA(nome)
 	VALUES 	('Ligabue'),('Ed Sheeran'),('Linkin Park'),('System Of A Down'),('AC/DC'),('Guns N'' Roses'),('Coldplay');
