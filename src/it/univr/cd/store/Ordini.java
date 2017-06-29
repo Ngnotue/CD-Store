@@ -50,8 +50,8 @@ public class Ordini extends JFrame {
 		
 		JLabel labelTesto;
 		if(Control.getLogged()){
-			labelTesto = new JLabel("User: " + model.getUsername(Control.getUserId()));
-			labelTesto.setBounds(5, 5, 100, 30);
+			labelTesto = new JLabel("Hai effettuato il login come: " + model.getUsername(Control.getUserId()));
+			labelTesto.setBounds(5, 5, 300, 30);
 			labelTesto.setBackground(Color.WHITE);
 			labelTesto.setForeground(Color.BLACK);
 			panel.add(labelTesto);
@@ -153,6 +153,12 @@ public class Ordini extends JFrame {
 					setVisible(false);
 				}
 			});
+		}else{
+			labelTesto = new JLabel("Non hai effettuato il login");
+			labelTesto.setBounds(5, 5, 300, 30);
+			labelTesto.setBackground(Color.WHITE);
+			labelTesto.setForeground(Color.BLACK);
+			panel.add(labelTesto);
 		}
 	}
 }

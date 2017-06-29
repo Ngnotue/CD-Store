@@ -152,6 +152,18 @@ public class Registrazione extends JFrame {
 					exception = true;
 				}
 				
+				if (isLetter(textCodiceFiscale.getText().charAt(0)) || isLetter(textCodiceFiscale.getText().charAt(1)) ||
+					isLetter(textCodiceFiscale.getText().charAt(2)) || isLetter(textCodiceFiscale.getText().charAt(3)) ||
+					isLetter(textCodiceFiscale.getText().charAt(4)) || isLetter(textCodiceFiscale.getText().charAt(5)) ||
+					isNumeric(textCodiceFiscale.getText().charAt(6)) || isNumeric(textCodiceFiscale.getText().charAt(7)) ||
+					isLetter(textCodiceFiscale.getText().charAt(8)) || isNumeric(textCodiceFiscale.getText().charAt(9)) ||
+					isNumeric(textCodiceFiscale.getText().charAt(10)) || isLetter(textCodiceFiscale.getText().charAt(11)) ||
+					isNumeric(textCodiceFiscale.getText().charAt(12)) || isNumeric(textCodiceFiscale.getText().charAt(13)) ||
+					isNumeric(textCodiceFiscale.getText().charAt(14)) || isLetter(textCodiceFiscale.getText().charAt(15))){
+					error += "Il codice fiscale non e' conforme allo standard\n";
+					exception = true;
+				}
+				
 				if (exception == false){
 					// INSERT
 					try {
@@ -171,5 +183,19 @@ public class Registrazione extends JFrame {
 				}
 			}
 		});
+	}
+	
+	private boolean isLetter(char c){
+		if (c>=65 && c<=90 && c>=97 && c<=122)
+			return true;
+		else
+			return false;
+	}
+	
+	private boolean isNumeric(char c){
+		if (c>=48 && c<=57)
+			return true;
+		else
+			return false;
 	}
 }
