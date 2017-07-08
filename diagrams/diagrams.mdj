@@ -25354,7 +25354,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFdE3hTvjPKyJQ="
 					},
-					"name": "ActivityDiagram1",
+					"name": "ActivityDiagram",
 					"visible": true,
 					"defaultDiagram": false,
 					"ownedViews": [
