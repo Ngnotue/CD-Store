@@ -29,4 +29,126 @@
 \Candidato[VR386665]{Giovanni Bellorio}
 \end{frontespizio}
 
+\tableofcontents
+\clearpage
+\thispagestyle{empty}
+
+\chapter{Testo elaborato}
+Si vuole progettare un sistema informativo per gestire le informazioni relative alla gestione di un negozio
+virtuale di CD e DVD musicali (vende solo via web).
+Il negozio mette in vendita CD di diversi generi: jazz, rock, classica, latin, folk, world-music, e cos\'i via.
+Per ogni CD o DVD il sistema memorizza: un codice univoco, il titolo, i titoli di tutti i pezzi contenuti,
+eventuali fotografie della copertina, il prezzo, la data dalla quale \'e presente sul sito web del negozio, il
+musicista/band titolare, una descrizione, il genere del CD o DVD, i musicisti che vi suonano, con il
+dettaglio degli strumenti musicali usati. Per ogni musicista il sistema registra il nome d’arte, il genere
+principale, l’anno di nascita, se noto, gli strumenti che suona.
+Sul sito web del negozio \'e illustrato il catalogo dei prodotti in vendita.
+Cliccando sul nome del prodotto, appare una finestra con i dettagli del prodotto stesso.
+I clienti possono acquistare on-line selezionando gli oggetti da mettere in un “carrello della spesa”
+virtuale.
+Deve essere possibile visualizzare il contenuto del carrello, modificare il contenuto del carrello, togliendo
+alcuni articoli.
+Al termine dell’acquisto va gestito il pagamento, che pu\'o avvenire con diverse modalit\'a.
+Il sistema supporta differenti ricerche: per genere, per titolare del CD o DVD, per musicista partecipante,
+per prezzo. Coerentemente, differenti modalit\'a di visualizzazione, sono altres\'i supportate.
+Ogni vendita viene registrata indicando il cliente che ha acquistato, i prodotti acquistati, il prezzo
+complessivo, la data di acquisto, l’ora, l’indirizzo IP del PC da cui \'e stato effettuato l’acquisto, la modalit\'a
+di pagamento (bonifico, carta di credito, paypal) e la modalit\'a di consegna (corriere, posta, ...).
+Per ogni cliente il sistema registra: il suo codice fiscale, il nome utente (univoco) con cui si \'e registrato,
+la sua password, il nome, il cognome, la citt\'a di residenza, il numero di telefono ed eventualmente il
+numero di cellulare.
+Per i clienti autenticati, il sistema propone pagine specializzate che mostrano suggerimenti basati sul
+genere dei precedenti prodotti acquistati.
+Se il cliente ha fatto gi\'a 3 acquisti superiori ai 250 euro l’uno entro l’anno, il sistema gli propone sconti e
+consegna senza spese di spedizione.
+Il personale autorizzato del negozio pu\'o inserire tutti i dati dei CD e DVD in vendita. Il personale
+inserisce anche il numero di pezzi a magazzino. Il sistema tiene aggiornato il numero dei pezzi a
+magazzino durante la vendita e avvisa il personale del negozio quando un articolo (CD o DVD) scende
+sotto i 2 pezzi presenti in magazzino.
+
+\chapter{Idee di progettazione}
+\section{Generale}
+Abbiamo progettato un'applicazione Java che si interfaccia ad un server Postgres per l'acquisizione e
+l'immagazzinamento dei dai. L'applicazione prevede un'interfaccia che permette di soddisfare le richieste
+di due categorie di utenti:
+\begin{itemize}
+\item CLIENTI: i quali avranno la possibilit\'a di acquistare CD/DVD dal negozio online
+\item PERSONALE: il quale avr\'a la possibili\'a di gestire il magazzino modificando dati nel database attraverso un GUI
+\end{itemize}
+
+\section{Versione attuale}
+In questa versione dell'applicazione ci siamo concentrati nello sviluppo dell'interfaccia lato cliente.
+L'utente avr\'a la possibilit\'a di sfogliare il catalogo con i prodotti, ottenere informazioni dettagliate per un prodotto
+specifico, connettersi con un proprio account personale per effettuare acquisti, potendo modificare il contenuto 
+del proprio carrello virtuale e visualizzare gli ordini gi\'a effettuati con tale account. Inoltre sar\'a possibilie creare un nuovo account qualora l'utente non dovesse disporne di uno.
+
+\subsection{Database -  PostGres}
+\subsection{GUI -  Java}
+
+\chapter{Metodo di sviluppo}
+La versione attuale dell'applicazione \'e stata implementata usando un metodo di progettazione agile, cercando similitudini e 
+facendo confronti con i pi\'u famosi siti di e-commerce. Abbiamo organizzato il lavoro in modo da essere sempre efficenti utilizzando
+un sito per la condivisione software che tiene traccia di tutte le modifiche effettuate, chiamato GitHub.\\
+Grazie a questa piattaforma abbiamo potuto alternare scrittura di codice da casa ad incontri regolari in universit\'a per organizzare
+le idee, confrontarsi, dividersi i compiti e darci delle scadenze ai lavori assegnatici.\\
+Con GitHub abbiamo potuto tenere ben separati modelli sperimentali e non ancora testati, scritti e documentati su un branch developer, e i modelli che hanno superato la fase di testing, sul branch master.\\
+In questo modo ci \'e sempre stato possibile fare un confronto per l'aggiornamento della nuova versione dell'applicazione,
+e nel caso ne avessimo avuto necessit\'a la possibilit\'a di avere sempre una versione affidabile di partenza per un eventuale rollback.
+
+\chapter{Diagrammi}
+\section{Use Case Diagram}
+\subsection{Use Case n.1}
+\begin{itemize}
+\item Sull'applicazione del negozio \'e illustrato il catalogo dei prodotti in vendita.
+\item Cliccando sul nome dello strumento la finestra permette la visualizzazione dei dettagli del CD/DVD selezionato.
+\item L'applicazione supporta diverse ricerche: genere, titolare del CD o DVD, musicista partecipante, prezzo.
+\end{itemize}
+
+Inserire USE CASE 1
+
+\subsection{Use Case n.2}
+\begin{itemize}
+\item I clienti effettuare degli acquisti selezionando gli oggetti da mettere in un carrello virtuale.
+\item \'E possibile visualizzare il contenuto del carrello, modificandone il contenuto, aggiungendo o togliendo alcuni articoli.
+\item Al termine dell'acquisto viene gestito il pagamento, che pu\'o avvenire attraverso tre diverse modalit\'a.
+\end{itemize}
+
+Inserire USE CASE 2
+
+\subsection{Use Case n.3}
+\begin{itemize}
+\item Tutti i clienti possono registrarsi al sito per effettuare acquisti.
+\item I clienti autenticati ricevono pagine specializzate con prodotti consigliati, rispetto agli oggetti precedentemente acquistati.
+\item Se il cliente ha gi\'a fatto tre acquisti superiori ai 250 euro l'un entro l'anno, il sistema propone ulteriori sconti e consegna senza spese di spezione.
+\end{itemize}
+
+Inserire USE CASE 3
+
+\subsection{Use Case n.4}
+\begin{itemize}
+\item Il personale pu\'o inserire i dati per nuovi CD o DVD da mettere in vendita.
+\item Il personale pu\'o aggiornare il numero di pezzi in magazzino per i CD/DVD in vendita.
+\item Il personale viene avvisato se un oggetto del catalogo scende sotto i 2 pezzi in magazzino.
+\end{itemize}
+
+Inserire USE CASE 4
+
+\section{Sequence Diagram}
+\subsection{Sequence Diagram n.1}
+\subsection{Sequence Diagram n.2}
+\subsection{Sequence Diagram n.3}
+\subsection{Sequence Diagram n.4}
+\section{Activity Diagram}
+\section{Class Diagram}
+
+\newpage
+\thispagestyle{empty}
+
+\bibliography{biblio}
+\bibliographystyle{plain}
+
+\nocite{ingsft}
+\nocite{ingreq}
+\nocite{inglab}
+
 \end{document}
