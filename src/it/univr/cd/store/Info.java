@@ -134,27 +134,8 @@ public class Info extends JFrame {
 			buttonInvia.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					try {
-						String pwd = "";
-						for(int i=0; i<password.getPassword().length; i++)
-							pwd += password.getPassword()[i];
-						Control.setUserId(model.login(username.getText(), pwd));
-						if(Control.getUserId() != 0)
-							Control.setLogged(true);
-						else
-							Control.setLogged(false);
-					} catch (Exception e1) {
-						e1.printStackTrace();
-					}
-					
-					Info viewInfo;
-					try {
-						viewInfo = new Info(id);
-						viewInfo.setVisible(true);
-					} catch (Exception e1) {
-						e1.printStackTrace();
-					}
-					setVisible(false);
+					Login viewLogin = new Login(frame);
+					viewLogin.setVisible(true);
 				}
 			});
 			
